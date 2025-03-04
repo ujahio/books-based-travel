@@ -1,4 +1,5 @@
 import readline from 'readline';
+import { runAgent } from './src/agent';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -11,7 +12,6 @@ const rl = readline.createInterface({
       rl.question('Say something: ', resolve);
     });
 
-    console.log('user questions:', userMessage);
-    // await runAgent({ userMessage })
+    await runAgent({ userMessage });
   }
 })();
