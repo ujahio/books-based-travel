@@ -2,6 +2,11 @@ import { JSONFilePreset } from 'lowdb/node';
 import type { AIMessage } from '../types.ts';
 import { v4 as uuidv4 } from 'uuid';
 
+type MessageWithMetadata = AIMessage & {
+  id: string;
+  createdAt: number,
+}
+
 type HistoryData = {
   messages: MessageWithMetadata[];
 };
@@ -26,4 +31,9 @@ export const addMessage = async (messages: AIMessage[]) => {
   db.data.messages.push(...messages.map(addMetadata))
 
   await db.write()
+}
+
+export const getMessages = async () => {
+  const db = await getDb()
+  return db.data.messages
 }
