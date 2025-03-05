@@ -8,4 +8,4 @@ export const systemPropmpt = `
   Example output:
   - Travel Destination: Egypt
   - Food Recommendation: Koshari, Baklava, Ta'ameya and Ful Medames
-`
+`;
