@@ -3,6 +3,7 @@ import {
   movieSearch,
   movieSearchToolDefinition,
 } from './src/tools/movieSearch';
+import { booksSearch, booksSearchToolDefinition } from './src/tools/findBooks';
 
 export const runTool = async ({
   userMessage,
@@ -21,6 +22,9 @@ export const runTool = async ({
   switch (toolCall.function.name) {
     case movieSearchToolDefinition.name:
       return movieSearch(input);
+
+    case booksSearchToolDefinition.name:
+      return booksSearch(input);
 
     default:
       return 'Tool not found';
