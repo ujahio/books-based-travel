@@ -1,19 +1,18 @@
-## AI Book-Based Travel Guide
+## AI Movie-Based Book Suggestion
+
 📌 Description:
-An AI that suggests travel destinations based on book settings & real locations.
+An AI that suggests books destinations based on movie selection. AI can also generate a poster
 
 🔹 Free APIs Used:
 
-Google Books API → Fetch book metadata.
-Wikipedia API → Fetch real locations mentioned in books.
-Google Maps API (Limited Free Requests) → Fetch travel guides & attractions.
+Open Library Archive → Fetch book metadata.
+
 🔹 AI Use Case:
 
-CLI: "I loved 'Eat, Pray, Love'. Where should I travel?"
-Uses RAG to fetch book locations.
-Uses Google Maps API to suggest real-world travel guides.
-Saves user travel interests in lowdb.
-
+CLI: "I loved 'Eat, Pray, Love'. What movies are based on the book? Generate a cover art based on the description of the book"
+Indexed movie dataset → Query movie metadata interacted via RAG.
+LLM suggests the books movie was adapted from. If there aren't any, LLM suggest books based on the or books related to the genre of the movie
+LLM also generates poster of the book and or movie
 
 ## Installation
 
