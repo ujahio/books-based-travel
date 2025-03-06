@@ -15,18 +15,24 @@ export const runLLM = async ({
   tools: any;
 }) => {
   const formattedTools = tools.map(zodFunction);
-  const response = await openai.chat.completions.create({
-    model: process.env.LLM_MODEL || 'gpt-4o-mini',
-    temperature,
-    messages: [
-      { role: 'developer', content: systemPrompt || defaultSystemPrompt },
-      ...messages,
-    ],
-    ...(formattedTools.length > 0 && {
-      tools: formattedTools,
-      tool_choice: 'auto',
-      parallel_tool_calls: false,
-    }),
-  });
-  return response.choices[0].message;
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: process.env.LLM_MODEL || 'gpt-4o-mini',
+      temperature,
+      messages: [
+        { role: 'developer', content: systemPrompt || defaultSystemPrompt },
+        ...messages,
+      ],
+      ...(formattedTools.length > 0 && {
+        tools: formattedTools,
+        tool_choice: 'auto',
+        parallel_tool_calls: false,
+      }),
+    });
+    return response.choices[0].message;
+  } catch (error) {
+    console.error('Error running LLM', error);
+    return { role: 'system', content: 'Error running LLM' };
+  }
 };
