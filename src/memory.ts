@@ -24,7 +24,7 @@ const addMetadata = (message: AIMessage): MessageWithMetadata => ({
   createdAt: Date.now(),
 });
 
-export const addMessage = async (messages: AIMessage[]) => {
+export const addMessages = async (messages: AIMessage[]) => {
   const db = await getDb();
   db.data.messages.push(...messages.map(addMetadata));
 
@@ -39,4 +39,17 @@ export const removeMetaData = (message: MessageWithMetadata): AIMessage => {
 export const getMessages = async () => {
   const db = await getDb();
   return db.data.messages.map(removeMetaData);
+};
+
+export const saveToolResponse = async (
+  toolCallId: string,
+  toolResponse: string,
+) => {
+  return addMessages([
+    {
+      role: 'tool',
+      content: toolResponse,
+      tool_call_id: toolCallId,
+    },
+  ]);
 };
