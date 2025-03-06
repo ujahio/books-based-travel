@@ -15,7 +15,7 @@ export const runLLM = async ({
     model: process.env.LLM_MODEL || 'gpt-4o-mini',
     temperature,
     messages: [
-      { role: 'system', content: systemPrompt || defaultSystemPrompt },
+      { role: 'developer', content: systemPrompt || defaultSystemPrompt },
       ...messages,
     ],
   });
