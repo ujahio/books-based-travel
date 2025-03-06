@@ -10,13 +10,12 @@ export const runAgent = async ({
   userMessage: string;
   tools: any;
 }) => {
-  while (true) {
-    const loader = showLoader('Running agent...');
+  await addMessages([{ role: 'user', content: userMessage }]);
+  const loader = showLoader('Running agent...');
 
-    await addMessages([{ role: 'user', content: userMessage }]);
+  while (true) {
     const history = await getMessages();
     const response = await runLLM({ messages: history, tools });
-
     await addMessages([response]);
 
     if (response.content) {
@@ -32,13 +31,10 @@ export const runAgent = async ({
       const toolCall = response.tool_calls[0];
       loader.update(`Running tool: ${toolCall.function.name}`);
       const toolResponse = await runTool({ userMessage, toolCall });
-      // console.log('TOOL RESPONSE', toolResponse);
       await saveToolResponse(toolCall.id, toolResponse);
       loader.update(`done: ${toolCall.function.name}`);
+      loader.stop();
       logMessage(toolResponse);
     }
   }
-
-  // logMessage(response);
-  // loader.stop();
 };
