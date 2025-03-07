@@ -15,7 +15,7 @@ export type Args = z.infer<typeof generateImageToolDefinition.parameters>;
 export const generateImage: ToolFn<Args> = async ({ toolArgs }) => {
   try {
     const response = await openai.images.generate({
-      model: process.env.OPENAI_IMAGE_GEN_LLM || 'dall-e-3',
+      model: process.env.OPENAI_IMAGE_GEN_LLM_MODEL || 'dall-e-3',
       prompt: toolArgs.prompt,
     });
     return response.data[0].url;

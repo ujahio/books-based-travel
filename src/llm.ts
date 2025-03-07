@@ -18,7 +18,7 @@ export const runLLM = async ({
   const formattedTools = tools.map(zodFunction);
 
   const response = await openai.chat.completions.create({
-    model: process.env.OPENAI_TEXT_GEN_LLM || 'gpt-4o-mini',
+    model: process.env.OPENAI_TEXT_GEN_LLM_MODEL || 'gpt-4o-mini',
     temperature,
     messages: [
       { role: 'system', content: systemPrompt || defaultSystemPrompt },
@@ -45,7 +45,7 @@ export const approvalLLM = async ({
   userMessage: string;
 }) => {
   const completion = await openai.beta.chat.completions.parse({
-    model: process.env.OPENAI_TEXT_GEN_LLM || 'gpt-4o-mini',
+    model: process.env.OPENAI_TEXT_GEN_LLM_MODEL || 'gpt-4o-mini',
     temperature,
     messages: [
       {
