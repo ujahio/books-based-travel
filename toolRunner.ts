@@ -4,6 +4,10 @@ import {
   movieSearchToolDefinition,
 } from './src/tools/movieSearch';
 import { booksSearch, booksSearchToolDefinition } from './src/tools/findBooks';
+import {
+  generateImage,
+  generateImageToolDefinition,
+} from './src/tools/generateImage';
 
 export const runTool = async ({
   userMessage,
@@ -26,6 +30,8 @@ export const runTool = async ({
     case booksSearchToolDefinition.name:
       return booksSearch(input);
 
+    case generateImageToolDefinition.name:
+      return generateImage(input);
     default:
       return 'Tool not found';
   }
