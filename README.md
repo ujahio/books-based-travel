@@ -1,4 +1,4 @@
-## AI Movie-Based Book Suggestion
+## AI Movie/Book Recommendation App
 
 📌 Description:
 An AI that suggests books based on movie selection and vice versa. AI can also generate a poster related to books or movies.
