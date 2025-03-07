@@ -25,12 +25,11 @@ export const booksSearch: ToolFn<Args, string> = async ({ toolArgs }) => {
     let query = '';
     if (bookTitle) {
       query += `title=${encodeURIComponent(bookTitle)}&`;
-    }
-    if (bookGenres && bookGenres.length > 0) {
+    } else if (bookGenres && bookGenres.length > 0) {
       query += `subject=${encodeURIComponent(bookGenres.join(','))}&`;
     }
 
-    query += 'limit=5&';
+    query += 'limit=1&';
 
     const { docs } = await fetch(
       `https://openlibrary.org/search.json?${query}`,
