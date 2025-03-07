@@ -1,5 +1,6 @@
 import ora from 'ora';
 import type { AIMessage } from '../types';
+import { generateImageToolDefinition } from './tools/generateImage';
 
 export const showLoader = (text: string) => {
   const spinner = ora({
