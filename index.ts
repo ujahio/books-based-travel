@@ -9,7 +9,7 @@ const rl = readline.createInterface({
 
 (async function () {
   const userMessage: string = await new Promise((resolve) => {
-    rl.question('Say something: ', resolve);
+    rl.question('What recommendation do you need: ', resolve);
   });
 
   await runAgent({ userMessage, tools });
